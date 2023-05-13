@@ -352,6 +352,5 @@ namespace WaycomEncrptionSystem
             }
             return ImageFormat.unknown;
         }
-        
     }
 }
