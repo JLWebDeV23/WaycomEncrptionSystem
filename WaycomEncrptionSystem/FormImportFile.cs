@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Security.Cryptography;
 using System.Runtime.InteropServices;
+using System.Data.SqlClient;
 
 namespace WaycomEncrptionSystem
 {
@@ -18,6 +19,8 @@ namespace WaycomEncrptionSystem
     {
         Bitmap image;
         Image img;
+        string cipher = null;
+        string original = null;
 
         /**
          * Image Format
@@ -82,6 +85,7 @@ namespace WaycomEncrptionSystem
 
                 // Display the file content in richTextBox
                 richTextBox1.Text = toBase64;
+                original = toBase64;
 
                 // Display the file size
                 fileSize = fileInfo.Length;
@@ -134,6 +138,7 @@ namespace WaycomEncrptionSystem
         Aes myAes = Aes.Create();
         private string stringIV = "abcdefghijklmnmo";
         private string stringKey = "abcdefghijklmnmoabcdefghijklmnmo";
+        
 
         private void button_Encrypt_Click(object sender, EventArgs e)
         {
@@ -144,7 +149,7 @@ namespace WaycomEncrptionSystem
             byte[] encrypted = EcryptStringToByte(imageToPlaintext, myAes.Key, myAes.IV);
             
 
-            string cipher = Convert.ToBase64String(encrypted);
+            cipher = Convert.ToBase64String(encrypted);
 
             string filePath = @"D:\ASUS\Desktop\base64.txt";
             using (StreamWriter writer = new StreamWriter(filePath))
@@ -285,7 +290,7 @@ namespace WaycomEncrptionSystem
                 pictureBox_Img.Image = image;
                 // fix when import an image, the detail field is also updated 
             }
-        }        
+        }
 
         private void UsefulFunctions()
         {
@@ -351,6 +356,23 @@ namespace WaycomEncrptionSystem
                 return ImageFormat.jpg;
             }
             return ImageFormat.unknown;
+        }
+
+        private void button_Upload_Click(object sender, EventArgs e)
+        {
+            string query = "insert into User_encrypted_file (file_type, doc_name, doc_binary, doc_bin_encrypted) values (@file_type, @doc_name, @doc_binary, @doc_bin_encrypted)";
+
+            SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-NSR5BOG\SQLEXPRESS;Initial Catalog=Waycomdb;Integrated Security=True");
+
+            SqlCommand cmd = new SqlCommand(query, conn);
+            conn.Open();
+
+            cmd.Parameters.AddWithValue("@file_type", textBox_fileType.Text);
+            cmd.Parameters.AddWithValue("@doc_name", textBox_fileName.Text);
+            cmd.Parameters.AddWithValue("@doc_binary", Convert.FromBase64String(original));
+            cmd.Parameters.AddWithValue("@doc_bin_encrypted", Convert.FromBase64String(cipher));
+
+            MessageBox.Show("Uploaded");
         }
     }
 }

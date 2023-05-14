@@ -91,6 +91,7 @@
             this.button_Upload.TabIndex = 54;
             this.button_Upload.Text = "Upload";
             this.button_Upload.UseVisualStyleBackColor = false;
+            this.button_Upload.Click += new System.EventHandler(this.button_Upload_Click);
             // 
             // button_Cancel
             // 
