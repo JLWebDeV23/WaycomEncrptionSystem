@@ -360,7 +360,7 @@ namespace WaycomEncrptionSystem
 
         private void button_Upload_Click(object sender, EventArgs e)
         {
-            string query = "insert into User_encrypted_file (file_type, doc_name, doc_binary, doc_bin_encrypted) values (@file_type, @doc_name, @doc_binary, @doc_bin_encrypted)";
+            string query = "insert into User_encrypted_file (file_type, doc_name, doc_bin, doc_bin_encrypted) values (@file_type, @doc_name, @doc_bin, @doc_bin_encrypted)";
 
             SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-NSR5BOG\SQLEXPRESS;Initial Catalog=Waycomdb;Integrated Security=True");
 
@@ -369,10 +369,13 @@ namespace WaycomEncrptionSystem
 
             cmd.Parameters.AddWithValue("@file_type", textBox_fileType.Text);
             cmd.Parameters.AddWithValue("@doc_name", textBox_fileName.Text);
-            cmd.Parameters.AddWithValue("@doc_binary", Convert.FromBase64String(original));
+            cmd.Parameters.AddWithValue("@doc_bin", Convert.FromBase64String(original));
             cmd.Parameters.AddWithValue("@doc_bin_encrypted", Convert.FromBase64String(cipher));
+            cmd.ExecuteNonQuery();
 
-            MessageBox.Show("Uploaded");
+            conn.Close();
+
+            MessageBox.Show("Saved");
         }
     }
 }
