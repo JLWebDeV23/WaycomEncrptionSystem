@@ -12,6 +12,17 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Runtime.InteropServices;
 using System.Data.SqlClient;
+using WaycomEncrptionSystem.Encryption;
+using System.Buffers.Text;
+using System.Diagnostics.Eventing.Reader;
+using ImageMagick;
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Bcpg.OpenPgp;
+using WaycomEncrytionsystem;
+using System.Diagnostics;
+using Org.BouncyCastle.Crypto.Paddings;
+using Org.BouncyCastle.Utilities;
+using Org.BouncyCastle.Security;
 
 namespace WaycomEncrptionSystem
 {
@@ -42,7 +53,7 @@ namespace WaycomEncrptionSystem
         }
 
         private void ImportFile()
-        {            
+        {
             var filePath = string.Empty;
             long fileSize;
             string toBase64;
@@ -72,8 +83,8 @@ namespace WaycomEncrptionSystem
                 {
                     // Display the image
                     img = Image.FromFile(filePath);
-                    pictureBox_Img.Image = img;                    
-                    textBox_fileType.Text = "." + extension;                 
+                    pictureBox_Img.Image = img;
+                    textBox_fileType.Text = "." + extension;
                 }
                 else
                 {
@@ -83,6 +94,13 @@ namespace WaycomEncrptionSystem
                 // Convert the file path from byte array to string 
                 toBase64 = Convert.ToBase64String(fileToArray);
 
+                // Save original file text
+                string filePath1 = @"D:\IFB399\tempPicturePath\storePath\orignial.txt";
+                using (StreamWriter writer = new StreamWriter(filePath1))
+                {
+                    writer.Write(toBase64);
+                }
+
                 // Display the file content in richTextBox
                 richTextBox1.Text = toBase64;
                 original = toBase64;
@@ -90,7 +108,7 @@ namespace WaycomEncrptionSystem
                 // Display the file size
                 fileSize = fileInfo.Length;
                 textBox_fileSize.Text = fileSize.ToString();
-                
+
                 // Display the file name
                 textBox_fileName.Text = Path.GetFileName(filePath);
             }
@@ -99,7 +117,7 @@ namespace WaycomEncrptionSystem
         private void button_Import_File_Click(object sender, EventArgs e)
         {
             ClearAll();
-            ImportFile();            
+            ImportFile();
         }
 
         private void button_Cancel_Click(object sender, EventArgs e)
@@ -136,33 +154,80 @@ namespace WaycomEncrptionSystem
         }
 
         Aes myAes = Aes.Create();
+        AES AES = new AES();
+        RSAAlogrithm myRSA = new RSAAlogrithm();
+        BlowFish myBlowFish = new BlowFish();
+        Twofish myTwoFish = new Twofish();
+        Camellia myCamellia = new Camellia();
+        Serpent mySerpent = new Serpent();
+        RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
         private string stringIV = "abcdefghijklmnmo";
         private string stringKey = "abcdefghijklmnmoabcdefghijklmnmo";
-        
+        byte[] iv;
+        byte[] key;
+        AsymmetricCipherKeyPair keyRSA;
 
         private void button_Encrypt_Click(object sender, EventArgs e)
         {
             myAes.Key = Encoding.ASCII.GetBytes(stringKey);
             myAes.IV = Encoding.ASCII.GetBytes(stringIV);
+            byte[] encryptedData = null;
+            string imageToString = richTextBox1.Text;
 
-            string imageToPlaintext = richTextBox1.Text;
-            byte[] encrypted = EcryptStringToByte(imageToPlaintext, myAes.Key, myAes.IV);
-            
+            byte[] imgByte = Encoding.UTF8.GetBytes(imageToString);
 
-            cipher = Convert.ToBase64String(encrypted);
+            // Encryption select
+            if (comboBox_encryptionMethods.Text == "AES")
+            {
+                encryptedData = AES.EcryptStringToByte(imageToString, myAes.Key, myAes.IV);
+            }
+            else if (comboBox_encryptionMethods.Text == "RSA")
+            {
+                keyRSA = myRSA.keyGenerator();
+                encryptedData = myRSA.Encrypt(imageToString, keyRSA);
+            }
+            else if (comboBox_encryptionMethods.Text == "Blowfish")
+            {
+                key = myBlowFish.GenerateBlowfishKey();
+                encryptedData = myBlowFish.Encrypt(imageToString, key);
+            }
+            else if (comboBox_encryptionMethods.Text == "Twofish")
+            {
+                key = myBlowFish.GenerateBlowfishKey();
+                encryptedData = myTwoFish.Encrypt(imageToString, key);
+            }
+            else if (comboBox_encryptionMethods.Text == "Camellia")
+            {
+                key = myCamellia.GenerateRandomKey(256); // 256-bit key for Camellia
+                iv = myCamellia.GenerateRandomIV(128);   // 128-bit IV for Camellia
+                encryptedData = myCamellia.Encrypt(imgByte, key, iv);
+            }
+            else if (comboBox_encryptionMethods.Text == "Serpent")
+            {
+                key = mySerpent.GenerateRandomKey(256 / 8);
+                encryptedData = mySerpent.Encrypt(imgByte, key);
+            }
+            else
+            {
+                MessageBox.Show("Please make a selection");
+                return;
+            }
 
-            string filePath = @"D:\ASUS\Desktop\base64.txt";
+            // Convert ciphertext to String
+            cipher = Convert.ToBase64String(encryptedData);
+
+            string filePath = @"D:\IFB399\tempPicturePath\storePath\base64.txt";
             using (StreamWriter writer = new StreamWriter(filePath))
             {
                 writer.Write(cipher);
             }
 
             richTextBox1.Text = cipher;
-                        
-            img = byteArrayToImage(encrypted);
-            img.Save(@"D:\ASUS\Desktop\sample1.jpg");
 
-            img = Image.FromFile(@"D:\ASUS\Desktop\sample1.jpg");
+            img = byteArrayToImage(encryptedData);
+            img.Save(@"D:\IFB399\tempPicturePath\storePath\sample1.jpg");
+
+            img = Image.FromFile(@"D:\IFB399\tempPicturePath\storePath\sample1.jpg");
             pictureBox_Img.Image = img;
         }
 
@@ -189,48 +254,50 @@ namespace WaycomEncrptionSystem
             return bitmap;
         }
 
-        // Encryption algorithm
-        static byte[] EcryptStringToByte(string plaintext, byte[] key, byte[] iV)
-        {
-            // Check input argument 
-            if (plaintext == null || plaintext.Length <= 0)
-                throw new ArgumentNullException("plaintext");
-            if (key == null || key.Length <= 0)
-                throw new ArgumentNullException("Key");
-            if (iV == null || iV.Length <= 0)
-                throw new ArgumentNullException("IV");
-            byte[] encrypted;
-
-            using (Aes aesObj = Aes.Create())
-            {
-                aesObj.Key = key;
-                aesObj.IV = iV;
-
-                ICryptoTransform encryptor = aesObj.CreateEncryptor(aesObj.Key, aesObj.IV);
-
-                using (MemoryStream msEncrypt = new MemoryStream())
-                {
-                    using (CryptoStream csEncrypt = new CryptoStream(msEncrypt, encryptor, CryptoStreamMode.Write))
-                    {
-                        using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
-                        {
-                            // Write data to stream
-                            swEncrypt.Write(plaintext);
-                        }
-                        encrypted = msEncrypt.ToArray();
-                    }
-                }
-            }
-
-            return encrypted;
-        }
-
+        // check files content are the same
         private void button_Decrypt_Click(object sender, EventArgs e)
         {
-            string imageObjPath = @"D:\ASUS\Desktop\sample.png";
+            string imageObjPath = @"D:\IFB399\tempPicturePath\storePath\sample.png";
             byte[] cipher = Convert.FromBase64String(richTextBox1.Text);
-            string Decrypted = DecryptStringFromByte(cipher, myAes.Key, myAes.IV);
-            byte[] imageByte = Convert.FromBase64String(Decrypted);
+            string decryptedData = null;
+            byte[] imageByte = null;
+            byte[] decryptedDataForBlowfish = null;
+            if (comboBox_encryptionMethods.Text == "AES")
+            {
+                decryptedData = AES.DecryptStringFromByte(cipher, myAes.Key, myAes.IV);
+            }
+            else if (comboBox_encryptionMethods.Text == "RSA")
+            {
+                decryptedData = myRSA.Decrypt(cipher, keyRSA);
+            }
+            else if (comboBox_encryptionMethods.Text == "Blowfish")
+            {
+                decryptedData = myBlowFish.Decrypt(cipher, key);
+            }
+            else if (comboBox_encryptionMethods.Text == "Twofish")
+            {
+                decryptedData = myTwoFish.Decrypt(cipher, key);
+            }
+            else if (comboBox_encryptionMethods.Text == "Camellia")
+            {
+                decryptedData = Encoding.UTF8.GetString(myCamellia.Decrypt(cipher, key, iv));
+            }
+            else if (comboBox_encryptionMethods.Text == "Serpent")
+            {
+                decryptedData = Encoding.UTF8.GetString(mySerpent.Decrypt(cipher, key));
+            }
+            else
+            {
+                MessageBox.Show("Please make a selection");
+                return;
+            }
+
+            imageByte = Convert.FromBase64String(decryptedData);
+            string filePath1 = @"D:\IFB399\tempPicturePath\storePath\decryptedCipher.txt";
+            using (StreamWriter writer = new StreamWriter(filePath1))
+            {
+                writer.Write(decryptedData);
+            }
 
             using (FileStream imageFileStream = new FileStream(imageObjPath, FileMode.Create))
             {
@@ -238,42 +305,9 @@ namespace WaycomEncrptionSystem
                 imageFileStream.Flush();
             }
 
-            img = Image.FromFile(@"D:\ASUS\Desktop\sample.png");
+            img = Image.FromFile(@"D:\IFB399\tempPicturePath\storePath\sample.png");
             pictureBox_Img.Image = img;
-            richTextBox1.Text = Decrypted;
-       
-        }
-
-        static string DecryptStringFromByte(byte[] ciphertext, byte[] key, byte[] iV)
-        {
-            if (ciphertext == null || ciphertext.Length <= 0)
-                throw new ArgumentNullException("ciphertext");
-            if (key == null || key.Length <= 0)
-                throw new ArgumentNullException("Key");
-            if (iV == null || iV.Length <= 0)
-                throw new ArgumentNullException("IV");
-
-            string plaintext = null;
-
-            using (Aes aesObj = Aes.Create())
-            {
-                aesObj.Key = key;
-                aesObj.IV = iV;
-
-                ICryptoTransform decryptor = aesObj.CreateDecryptor(aesObj.Key, aesObj.IV);
-
-                using (MemoryStream msDecrypt = new MemoryStream(ciphertext))
-                {
-                    using (CryptoStream csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read))
-                    {
-                        using (StreamReader srDecrypt = new StreamReader(csDecrypt))
-                        {
-                            plaintext = srDecrypt.ReadToEnd();
-                        }
-                    }
-                }
-            }
-            return plaintext;
+            richTextBox1.Text = Convert.ToBase64String(imageByte);
         }
 
         private void pictureBox_Img_DragEnter(object sender, DragEventArgs e)
@@ -360,7 +394,7 @@ namespace WaycomEncrptionSystem
 
         private void button_Upload_Click(object sender, EventArgs e)
         {
-            string query = "insert into User_encrypted_file (file_type, doc_name, doc_binary, doc_bin_encrypted) values (@file_type, @doc_name, @doc_binary, @doc_bin_encrypted)";
+            string query = "insert into User_encrypted_file (file_type, doc_name, doc_bin, doc_bin_encrypted) values (@file_type, @doc_name, @doc_bin, @doc_bin_encrypted)";
 
             SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-NSR5BOG\SQLEXPRESS;Initial Catalog=Waycomdb;Integrated Security=True");
 
@@ -369,10 +403,13 @@ namespace WaycomEncrptionSystem
 
             cmd.Parameters.AddWithValue("@file_type", textBox_fileType.Text);
             cmd.Parameters.AddWithValue("@doc_name", textBox_fileName.Text);
-            cmd.Parameters.AddWithValue("@doc_binary", Convert.FromBase64String(original));
+            cmd.Parameters.AddWithValue("@doc_bin", Convert.FromBase64String(original));
             cmd.Parameters.AddWithValue("@doc_bin_encrypted", Convert.FromBase64String(cipher));
+            cmd.ExecuteNonQuery();
 
-            MessageBox.Show("Uploaded");
+            conn.Close();
+
+            MessageBox.Show("Saved");
         }
     }
 }

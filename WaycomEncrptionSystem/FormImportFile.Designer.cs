@@ -28,307 +28,325 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel = new System.Windows.Forms.Panel();
-            this.button_Import_File = new System.Windows.Forms.Button();
-            this.button_Upload = new System.Windows.Forms.Button();
-            this.button_Cancel = new System.Windows.Forms.Button();
-            this.pictureBox_Img = new System.Windows.Forms.PictureBox();
-            this.textBox_fileType = new System.Windows.Forms.TextBox();
-            this.label_File_Type = new System.Windows.Forms.Label();
-            this.textBox_fileSize = new System.Windows.Forms.TextBox();
-            this.label_fileSize = new System.Windows.Forms.Label();
-            this.textBox_fileTitle = new System.Windows.Forms.TextBox();
-            this.label_fileTitle = new System.Windows.Forms.Label();
-            this.textBox_fileName = new System.Windows.Forms.TextBox();
-            this.label_fileName = new System.Windows.Forms.Label();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button_Clear = new System.Windows.Forms.Button();
-            this.button_Encrypt = new System.Windows.Forms.Button();
-            this.button_Decrypt = new System.Windows.Forms.Button();
-            this.label_EnterSign = new System.Windows.Forms.Label();
-            this.panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Img)).BeginInit();
-            this.SuspendLayout();
+            panel = new Panel();
+            button_Import_File = new Button();
+            button_Upload = new Button();
+            button_Cancel = new Button();
+            pictureBox_Img = new PictureBox();
+            textBox_fileType = new TextBox();
+            label_File_Type = new Label();
+            textBox_fileSize = new TextBox();
+            label_fileSize = new Label();
+            textBox_fileTitle = new TextBox();
+            label_fileTitle = new Label();
+            textBox_fileName = new TextBox();
+            label_fileName = new Label();
+            openFileDialog1 = new OpenFileDialog();
+            label1 = new Label();
+            comboBox1 = new ComboBox();
+            richTextBox1 = new RichTextBox();
+            button_Clear = new Button();
+            button_Encrypt = new Button();
+            button_Decrypt = new Button();
+            label_EnterSign = new Label();
+            label_encryptionType = new Label();
+            comboBox_encryptionMethods = new ComboBox();
+            panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox_Img).BeginInit();
+            SuspendLayout();
             // 
             // panel
             // 
-            this.panel.Controls.Add(this.button_Import_File);
-            this.panel.Controls.Add(this.button_Upload);
-            this.panel.Controls.Add(this.button_Cancel);
-            this.panel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel.Location = new System.Drawing.Point(0, 650);
-            this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(982, 73);
-            this.panel.TabIndex = 1;
+            panel.Controls.Add(button_Import_File);
+            panel.Controls.Add(button_Upload);
+            panel.Controls.Add(button_Cancel);
+            panel.Dock = DockStyle.Bottom;
+            panel.Location = new Point(0, 650);
+            panel.Name = "panel";
+            panel.Size = new Size(982, 73);
+            panel.TabIndex = 1;
             // 
             // button_Import_File
             // 
-            this.button_Import_File.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_Import_File.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(169)))), ((int)(((byte)(252)))));
-            this.button_Import_File.FlatAppearance.BorderSize = 0;
-            this.button_Import_File.Font = new System.Drawing.Font("Microsoft New Tai Lue", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button_Import_File.ForeColor = System.Drawing.Color.Transparent;
-            this.button_Import_File.Location = new System.Drawing.Point(37, 21);
-            this.button_Import_File.Name = "button_Import_File";
-            this.button_Import_File.Size = new System.Drawing.Size(94, 37);
-            this.button_Import_File.TabIndex = 56;
-            this.button_Import_File.Text = "Import";
-            this.button_Import_File.UseVisualStyleBackColor = false;
-            this.button_Import_File.Click += new System.EventHandler(this.button_Import_File_Click);
+            button_Import_File.Anchor = AnchorStyles.None;
+            button_Import_File.BackColor = Color.FromArgb(53, 169, 252);
+            button_Import_File.FlatAppearance.BorderSize = 0;
+            button_Import_File.Font = new Font("Microsoft New Tai Lue", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            button_Import_File.ForeColor = Color.Transparent;
+            button_Import_File.Location = new Point(37, 21);
+            button_Import_File.Name = "button_Import_File";
+            button_Import_File.Size = new Size(94, 37);
+            button_Import_File.TabIndex = 56;
+            button_Import_File.Text = "Import";
+            button_Import_File.UseVisualStyleBackColor = false;
+            button_Import_File.Click += button_Import_File_Click;
             // 
             // button_Upload
             // 
-            this.button_Upload.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_Upload.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(212)))), ((int)(((byte)(179)))));
-            this.button_Upload.FlatAppearance.BorderSize = 0;
-            this.button_Upload.Font = new System.Drawing.Font("Microsoft New Tai Lue", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button_Upload.Location = new System.Drawing.Point(732, 21);
-            this.button_Upload.Name = "button_Upload";
-            this.button_Upload.Size = new System.Drawing.Size(94, 37);
-            this.button_Upload.TabIndex = 54;
-            this.button_Upload.Text = "Upload";
-            this.button_Upload.UseVisualStyleBackColor = false;
-            this.button_Upload.Click += new System.EventHandler(this.button_Upload_Click);
+            button_Upload.Anchor = AnchorStyles.None;
+            button_Upload.BackColor = Color.FromArgb(147, 212, 179);
+            button_Upload.FlatAppearance.BorderSize = 0;
+            button_Upload.Font = new Font("Microsoft New Tai Lue", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            button_Upload.Location = new Point(732, 21);
+            button_Upload.Name = "button_Upload";
+            button_Upload.Size = new Size(94, 37);
+            button_Upload.TabIndex = 54;
+            button_Upload.Text = "Upload";
+            button_Upload.UseVisualStyleBackColor = false;
+            button_Upload.Click += button_Upload_Click;
             // 
             // button_Cancel
             // 
-            this.button_Cancel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_Cancel.FlatAppearance.BorderSize = 0;
-            this.button_Cancel.Font = new System.Drawing.Font("Microsoft New Tai Lue", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button_Cancel.ForeColor = System.Drawing.Color.Black;
-            this.button_Cancel.Location = new System.Drawing.Point(842, 21);
-            this.button_Cancel.Name = "button_Cancel";
-            this.button_Cancel.Size = new System.Drawing.Size(94, 37);
-            this.button_Cancel.TabIndex = 55;
-            this.button_Cancel.Text = "Cancel";
-            this.button_Cancel.UseVisualStyleBackColor = true;
-            this.button_Cancel.Click += new System.EventHandler(this.button_Cancel_Click);
+            button_Cancel.Anchor = AnchorStyles.None;
+            button_Cancel.FlatAppearance.BorderSize = 0;
+            button_Cancel.Font = new Font("Microsoft New Tai Lue", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            button_Cancel.ForeColor = Color.Black;
+            button_Cancel.Location = new Point(842, 21);
+            button_Cancel.Name = "button_Cancel";
+            button_Cancel.Size = new Size(94, 37);
+            button_Cancel.TabIndex = 55;
+            button_Cancel.Text = "Cancel";
+            button_Cancel.UseVisualStyleBackColor = true;
+            button_Cancel.Click += button_Cancel_Click;
             // 
             // pictureBox_Img
             // 
-            this.pictureBox_Img.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox_Img.Location = new System.Drawing.Point(444, 40);
-            this.pictureBox_Img.Name = "pictureBox_Img";
-            this.pictureBox_Img.Size = new System.Drawing.Size(427, 245);
-            this.pictureBox_Img.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox_Img.TabIndex = 53;
-            this.pictureBox_Img.TabStop = false;
-            this.pictureBox_Img.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox_Img_DragDrop);
-            this.pictureBox_Img.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox_Img_DragEnter);
+            pictureBox_Img.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox_Img.Location = new Point(444, 40);
+            pictureBox_Img.Name = "pictureBox_Img";
+            pictureBox_Img.Size = new Size(427, 245);
+            pictureBox_Img.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox_Img.TabIndex = 53;
+            pictureBox_Img.TabStop = false;
+            pictureBox_Img.DragDrop += pictureBox_Img_DragDrop;
+            pictureBox_Img.DragEnter += pictureBox_Img_DragEnter;
             // 
             // textBox_fileType
             // 
-            this.textBox_fileType.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox_fileType.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_fileType.Location = new System.Drawing.Point(82, 338);
-            this.textBox_fileType.Name = "textBox_fileType";
-            this.textBox_fileType.ReadOnly = true;
-            this.textBox_fileType.Size = new System.Drawing.Size(176, 16);
-            this.textBox_fileType.TabIndex = 52;
+            textBox_fileType.Anchor = AnchorStyles.None;
+            textBox_fileType.BorderStyle = BorderStyle.None;
+            textBox_fileType.Location = new Point(82, 338);
+            textBox_fileType.Name = "textBox_fileType";
+            textBox_fileType.ReadOnly = true;
+            textBox_fileType.Size = new Size(176, 16);
+            textBox_fileType.TabIndex = 52;
             // 
             // label_File_Type
             // 
-            this.label_File_Type.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label_File_Type.AutoSize = true;
-            this.label_File_Type.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label_File_Type.Location = new System.Drawing.Point(82, 314);
-            this.label_File_Type.Name = "label_File_Type";
-            this.label_File_Type.Size = new System.Drawing.Size(75, 21);
-            this.label_File_Type.TabIndex = 51;
-            this.label_File_Type.Text = "File type";
+            label_File_Type.Anchor = AnchorStyles.None;
+            label_File_Type.AutoSize = true;
+            label_File_Type.Font = new Font("Microsoft New Tai Lue", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label_File_Type.Location = new Point(82, 314);
+            label_File_Type.Name = "label_File_Type";
+            label_File_Type.Size = new Size(75, 21);
+            label_File_Type.TabIndex = 51;
+            label_File_Type.Text = "File type";
             // 
             // textBox_fileSize
             // 
-            this.textBox_fileSize.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox_fileSize.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_fileSize.Location = new System.Drawing.Point(82, 255);
-            this.textBox_fileSize.Name = "textBox_fileSize";
-            this.textBox_fileSize.ReadOnly = true;
-            this.textBox_fileSize.Size = new System.Drawing.Size(176, 16);
-            this.textBox_fileSize.TabIndex = 50;
+            textBox_fileSize.Anchor = AnchorStyles.None;
+            textBox_fileSize.BorderStyle = BorderStyle.None;
+            textBox_fileSize.Location = new Point(82, 255);
+            textBox_fileSize.Name = "textBox_fileSize";
+            textBox_fileSize.ReadOnly = true;
+            textBox_fileSize.Size = new Size(176, 16);
+            textBox_fileSize.TabIndex = 50;
             // 
             // label_fileSize
             // 
-            this.label_fileSize.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label_fileSize.AutoSize = true;
-            this.label_fileSize.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label_fileSize.Location = new System.Drawing.Point(82, 231);
-            this.label_fileSize.Name = "label_fileSize";
-            this.label_fileSize.Size = new System.Drawing.Size(122, 21);
-            this.label_fileSize.TabIndex = 49;
-            this.label_fileSize.Text = "File Size (byte)";
+            label_fileSize.Anchor = AnchorStyles.None;
+            label_fileSize.AutoSize = true;
+            label_fileSize.Font = new Font("Microsoft New Tai Lue", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label_fileSize.Location = new Point(82, 231);
+            label_fileSize.Name = "label_fileSize";
+            label_fileSize.Size = new Size(122, 21);
+            label_fileSize.TabIndex = 49;
+            label_fileSize.Text = "File Size (byte)";
             // 
             // textBox_fileTitle
             // 
-            this.textBox_fileTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox_fileTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_fileTitle.Location = new System.Drawing.Point(82, 100);
-            this.textBox_fileTitle.Name = "textBox_fileTitle";
-            this.textBox_fileTitle.Size = new System.Drawing.Size(176, 16);
-            this.textBox_fileTitle.TabIndex = 48;
-            this.textBox_fileTitle.Text = "(enter a file name)";
+            textBox_fileTitle.Anchor = AnchorStyles.None;
+            textBox_fileTitle.BorderStyle = BorderStyle.None;
+            textBox_fileTitle.Location = new Point(82, 100);
+            textBox_fileTitle.Name = "textBox_fileTitle";
+            textBox_fileTitle.Size = new Size(176, 16);
+            textBox_fileTitle.TabIndex = 48;
+            textBox_fileTitle.Text = "(enter a file name)";
             // 
             // label_fileTitle
             // 
-            this.label_fileTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label_fileTitle.AutoSize = true;
-            this.label_fileTitle.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label_fileTitle.Location = new System.Drawing.Point(82, 76);
-            this.label_fileTitle.Name = "label_fileTitle";
-            this.label_fileTitle.Size = new System.Drawing.Size(75, 21);
-            this.label_fileTitle.TabIndex = 47;
-            this.label_fileTitle.Text = "File Title";
+            label_fileTitle.Anchor = AnchorStyles.None;
+            label_fileTitle.AutoSize = true;
+            label_fileTitle.Font = new Font("Microsoft New Tai Lue", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label_fileTitle.Location = new Point(82, 76);
+            label_fileTitle.Name = "label_fileTitle";
+            label_fileTitle.Size = new Size(75, 21);
+            label_fileTitle.TabIndex = 47;
+            label_fileTitle.Text = "File Title";
             // 
             // textBox_fileName
             // 
-            this.textBox_fileName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox_fileName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox_fileName.Location = new System.Drawing.Point(82, 171);
-            this.textBox_fileName.Name = "textBox_fileName";
-            this.textBox_fileName.ReadOnly = true;
-            this.textBox_fileName.Size = new System.Drawing.Size(176, 16);
-            this.textBox_fileName.TabIndex = 46;
+            textBox_fileName.Anchor = AnchorStyles.None;
+            textBox_fileName.BorderStyle = BorderStyle.None;
+            textBox_fileName.Location = new Point(82, 171);
+            textBox_fileName.Name = "textBox_fileName";
+            textBox_fileName.ReadOnly = true;
+            textBox_fileName.Size = new Size(176, 16);
+            textBox_fileName.TabIndex = 46;
             // 
             // label_fileName
             // 
-            this.label_fileName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label_fileName.AutoSize = true;
-            this.label_fileName.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label_fileName.Location = new System.Drawing.Point(82, 147);
-            this.label_fileName.Name = "label_fileName";
-            this.label_fileName.Size = new System.Drawing.Size(87, 21);
-            this.label_fileName.TabIndex = 45;
-            this.label_fileName.Text = "File Name";
+            label_fileName.Anchor = AnchorStyles.None;
+            label_fileName.AutoSize = true;
+            label_fileName.Font = new Font("Microsoft New Tai Lue", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label_fileName.Location = new Point(82, 147);
+            label_fileName.Name = "label_fileName";
+            label_fileName.Size = new Size(87, 21);
+            label_fileName.TabIndex = 45;
+            label_fileName.Text = "File Name";
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            openFileDialog1.FileName = "openFileDialog1";
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft New Tai Lue", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(82, 390);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 21);
-            this.label1.TabIndex = 54;
-            this.label1.Text = "File Source";
+            label1.Anchor = AnchorStyles.None;
+            label1.AutoSize = true;
+            label1.Font = new Font("Microsoft New Tai Lue", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(82, 390);
+            label1.Name = "label1";
+            label1.Size = new Size(93, 21);
+            label1.TabIndex = 54;
+            label1.Text = "File Source";
             // 
             // comboBox1
             // 
-            this.comboBox1.ForeColor = System.Drawing.Color.DimGray;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Passport",
-            "Driver Liscence",
-            "Certificate",
-            "File Document",
-            "Pictures",
-            "Credit Card",
-            "Others"});
-            this.comboBox1.Location = new System.Drawing.Point(83, 414);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(175, 23);
-            this.comboBox1.TabIndex = 55;
-            this.comboBox1.Text = "Please select a source";
+            comboBox1.ForeColor = Color.DimGray;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Passport", "Driver Liscence", "Certificate", "File Document", "Pictures", "Credit Card", "Others" });
+            comboBox1.Location = new Point(83, 414);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(175, 23);
+            comboBox1.TabIndex = 55;
+            comboBox1.Text = "Please select a source";
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(444, 314);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(427, 254);
-            this.richTextBox1.TabIndex = 56;
-            this.richTextBox1.Text = "";
+            richTextBox1.Location = new Point(444, 314);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(427, 254);
+            richTextBox1.TabIndex = 56;
+            richTextBox1.Text = "";
             // 
             // button_Clear
             // 
-            this.button_Clear.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_Clear.FlatAppearance.BorderSize = 0;
-            this.button_Clear.Font = new System.Drawing.Font("Microsoft New Tai Lue", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button_Clear.ForeColor = System.Drawing.Color.Black;
-            this.button_Clear.Location = new System.Drawing.Point(442, 584);
-            this.button_Clear.Name = "button_Clear";
-            this.button_Clear.Size = new System.Drawing.Size(94, 37);
-            this.button_Clear.TabIndex = 58;
-            this.button_Clear.Text = "Clear";
-            this.button_Clear.UseVisualStyleBackColor = true;
-            this.button_Clear.Click += new System.EventHandler(this.button_Clear_Click);
+            button_Clear.Anchor = AnchorStyles.None;
+            button_Clear.FlatAppearance.BorderSize = 0;
+            button_Clear.Font = new Font("Microsoft New Tai Lue", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            button_Clear.ForeColor = Color.Black;
+            button_Clear.Location = new Point(442, 584);
+            button_Clear.Name = "button_Clear";
+            button_Clear.Size = new Size(94, 37);
+            button_Clear.TabIndex = 58;
+            button_Clear.Text = "Clear";
+            button_Clear.UseVisualStyleBackColor = true;
+            button_Clear.Click += button_Clear_Click;
             // 
             // button_Encrypt
             // 
-            this.button_Encrypt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_Encrypt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(169)))), ((int)(((byte)(252)))));
-            this.button_Encrypt.FlatAppearance.BorderSize = 0;
-            this.button_Encrypt.Font = new System.Drawing.Font("Microsoft New Tai Lue", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button_Encrypt.ForeColor = System.Drawing.Color.Transparent;
-            this.button_Encrypt.Location = new System.Drawing.Point(542, 584);
-            this.button_Encrypt.Name = "button_Encrypt";
-            this.button_Encrypt.Size = new System.Drawing.Size(94, 37);
-            this.button_Encrypt.TabIndex = 59;
-            this.button_Encrypt.Text = "Encrypt";
-            this.button_Encrypt.UseVisualStyleBackColor = false;
-            this.button_Encrypt.Click += new System.EventHandler(this.button_Encrypt_Click);
+            button_Encrypt.Anchor = AnchorStyles.None;
+            button_Encrypt.BackColor = Color.FromArgb(53, 169, 252);
+            button_Encrypt.FlatAppearance.BorderSize = 0;
+            button_Encrypt.Font = new Font("Microsoft New Tai Lue", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            button_Encrypt.ForeColor = Color.Transparent;
+            button_Encrypt.Location = new Point(542, 584);
+            button_Encrypt.Name = "button_Encrypt";
+            button_Encrypt.Size = new Size(94, 37);
+            button_Encrypt.TabIndex = 59;
+            button_Encrypt.Text = "Encrypt";
+            button_Encrypt.UseVisualStyleBackColor = false;
+            button_Encrypt.Click += button_Encrypt_Click;
             // 
             // button_Decrypt
             // 
-            this.button_Decrypt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button_Decrypt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(169)))), ((int)(((byte)(252)))));
-            this.button_Decrypt.FlatAppearance.BorderSize = 0;
-            this.button_Decrypt.Font = new System.Drawing.Font("Microsoft New Tai Lue", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.button_Decrypt.ForeColor = System.Drawing.Color.Transparent;
-            this.button_Decrypt.Location = new System.Drawing.Point(642, 584);
-            this.button_Decrypt.Name = "button_Decrypt";
-            this.button_Decrypt.Size = new System.Drawing.Size(94, 37);
-            this.button_Decrypt.TabIndex = 63;
-            this.button_Decrypt.Text = "Decrypt";
-            this.button_Decrypt.UseVisualStyleBackColor = false;
-            this.button_Decrypt.Click += new System.EventHandler(this.button_Decrypt_Click);
+            button_Decrypt.Anchor = AnchorStyles.None;
+            button_Decrypt.BackColor = Color.FromArgb(53, 169, 252);
+            button_Decrypt.FlatAppearance.BorderSize = 0;
+            button_Decrypt.Font = new Font("Microsoft New Tai Lue", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            button_Decrypt.ForeColor = Color.Transparent;
+            button_Decrypt.Location = new Point(642, 584);
+            button_Decrypt.Name = "button_Decrypt";
+            button_Decrypt.Size = new Size(94, 37);
+            button_Decrypt.TabIndex = 63;
+            button_Decrypt.Text = "Decrypt";
+            button_Decrypt.UseVisualStyleBackColor = false;
+            button_Decrypt.Click += button_Decrypt_Click;
             // 
             // label_EnterSign
             // 
-            this.label_EnterSign.AutoSize = true;
-            this.label_EnterSign.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.label_EnterSign.ForeColor = System.Drawing.Color.Red;
-            this.label_EnterSign.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.label_EnterSign.Location = new System.Drawing.Point(157, 76);
-            this.label_EnterSign.Name = "label_EnterSign";
-            this.label_EnterSign.Size = new System.Drawing.Size(12, 15);
-            this.label_EnterSign.TabIndex = 64;
-            this.label_EnterSign.Text = "*";
+            label_EnterSign.AutoSize = true;
+            label_EnterSign.FlatStyle = FlatStyle.System;
+            label_EnterSign.ForeColor = Color.Red;
+            label_EnterSign.ImageAlign = ContentAlignment.MiddleRight;
+            label_EnterSign.Location = new Point(157, 76);
+            label_EnterSign.Name = "label_EnterSign";
+            label_EnterSign.Size = new Size(12, 15);
+            label_EnterSign.TabIndex = 64;
+            label_EnterSign.Text = "*";
+            // 
+            // label_encryptionType
+            // 
+            label_encryptionType.Anchor = AnchorStyles.None;
+            label_encryptionType.AutoSize = true;
+            label_encryptionType.Font = new Font("Microsoft New Tai Lue", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label_encryptionType.Location = new Point(83, 472);
+            label_encryptionType.Name = "label_encryptionType";
+            label_encryptionType.Size = new Size(134, 21);
+            label_encryptionType.TabIndex = 65;
+            label_encryptionType.Text = "Encryption Type";
+            // 
+            // comboBox_encryptionMethods
+            // 
+            comboBox_encryptionMethods.ForeColor = Color.DimGray;
+            comboBox_encryptionMethods.FormattingEnabled = true;
+            comboBox_encryptionMethods.Items.AddRange(new object[] { "AES", "RSA", "Blowfish", "Twofish", "Camellia", "Serpent" });
+            comboBox_encryptionMethods.Location = new Point(83, 496);
+            comboBox_encryptionMethods.Name = "comboBox_encryptionMethods";
+            comboBox_encryptionMethods.Size = new Size(175, 23);
+            comboBox_encryptionMethods.TabIndex = 66;
+            comboBox_encryptionMethods.Text = "Please select a source";
             // 
             // FormImportFile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SeaShell;
-            this.ClientSize = new System.Drawing.Size(982, 723);
-            this.Controls.Add(this.label_EnterSign);
-            this.Controls.Add(this.button_Decrypt);
-            this.Controls.Add(this.button_Encrypt);
-            this.Controls.Add(this.button_Clear);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox_Img);
-            this.Controls.Add(this.textBox_fileType);
-            this.Controls.Add(this.label_File_Type);
-            this.Controls.Add(this.textBox_fileSize);
-            this.Controls.Add(this.label_fileSize);
-            this.Controls.Add(this.textBox_fileTitle);
-            this.Controls.Add(this.label_fileTitle);
-            this.Controls.Add(this.textBox_fileName);
-            this.Controls.Add(this.label_fileName);
-            this.Controls.Add(this.panel);
-            this.Name = "FormImportFile";
-            this.panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Img)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.SeaShell;
+            ClientSize = new Size(982, 723);
+            Controls.Add(comboBox_encryptionMethods);
+            Controls.Add(label_encryptionType);
+            Controls.Add(label_EnterSign);
+            Controls.Add(button_Decrypt);
+            Controls.Add(button_Encrypt);
+            Controls.Add(button_Clear);
+            Controls.Add(richTextBox1);
+            Controls.Add(comboBox1);
+            Controls.Add(label1);
+            Controls.Add(pictureBox_Img);
+            Controls.Add(textBox_fileType);
+            Controls.Add(label_File_Type);
+            Controls.Add(textBox_fileSize);
+            Controls.Add(label_fileSize);
+            Controls.Add(textBox_fileTitle);
+            Controls.Add(label_fileTitle);
+            Controls.Add(textBox_fileName);
+            Controls.Add(label_fileName);
+            Controls.Add(panel);
+            Name = "FormImportFile";
+            panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox_Img).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -354,5 +372,7 @@
         private Button button_Encrypt;
         private Button button_Decrypt;
         private Label label_EnterSign;
+        private Label label_encryptionType;
+        private ComboBox comboBox_encryptionMethods;
     }
 }
