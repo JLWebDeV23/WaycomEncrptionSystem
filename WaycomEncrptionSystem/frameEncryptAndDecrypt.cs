@@ -22,5 +22,11 @@ namespace WaycomEncrptionSystem
             FormImportFile frm = new FormImportFile();
             frm.Show();
         }
+
+        private void button_Export_Click(object sender, EventArgs e)
+        {
+            FormDecryptFiles frm = new FormDecryptFiles();
+            frm.Show();
+        }
     }
 }

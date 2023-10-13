@@ -15,11 +15,11 @@ namespace WaycomEncrptionSystem
         public frameImportFile()
         {
             InitializeComponent();
-        }
+        }        
 
         private void button_Cancel_Click(object sender, EventArgs e)
         {
-
+            
 
         }
 
