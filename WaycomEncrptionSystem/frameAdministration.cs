@@ -25,7 +25,13 @@ namespace WaycomEncrptionSystem
 
         private void button_Close_Window_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult result = MessageBox.Show("Are you ready to log out?", "LOGOUT", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+                FormLogin form = new FormLogin();
+                form.Show();
+            }
         }
 
         private void button_Home_Click(object sender, EventArgs e)
@@ -41,6 +47,7 @@ namespace WaycomEncrptionSystem
             
             // Set the currentUser property of the FrameUserProfile
             this.Controls.Add(frame);
+            
 
             panel_home.Visible = false;
             frameEncryptAndDecrypt1.Visible = false;

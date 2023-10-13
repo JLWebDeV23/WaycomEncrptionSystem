@@ -30,7 +30,6 @@
         {
             panel1 = new Panel();
             button_About = new Button();
-            button_Log_Out = new Button();
             button_Data_Encrypt_Decrypt = new Button();
             button_Profile = new Button();
             button_Home = new Button();
@@ -41,9 +40,9 @@
             label_Client_Login = new Label();
             pictureBox2 = new PictureBox();
             panel4 = new Panel();
-            frameUserProfile1 = new FrameUserProfile();
             frameEncryptAndDecrypt1 = new frameEncryptAndDecrypt();
             panel_home = new Panel();
+            frameUserProfile1 = new FrameUserProfile();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -57,7 +56,6 @@
             // 
             panel1.BackColor = Color.FromArgb(11, 7, 17);
             panel1.Controls.Add(button_About);
-            panel1.Controls.Add(button_Log_Out);
             panel1.Controls.Add(button_Data_Encrypt_Decrypt);
             panel1.Controls.Add(button_Profile);
             panel1.Controls.Add(button_Home);
@@ -85,24 +83,6 @@
             button_About.Text = "About";
             button_About.TextImageRelation = TextImageRelation.ImageBeforeText;
             button_About.UseVisualStyleBackColor = true;
-            // 
-            // button_Log_Out
-            // 
-            button_Log_Out.Dock = DockStyle.Bottom;
-            button_Log_Out.FlatAppearance.BorderSize = 0;
-            button_Log_Out.FlatAppearance.MouseOverBackColor = Color.DimGray;
-            button_Log_Out.FlatStyle = FlatStyle.Flat;
-            button_Log_Out.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            button_Log_Out.ForeColor = Color.White;
-            button_Log_Out.Image = Properties.Resources.account_logout_24;
-            button_Log_Out.ImageAlign = ContentAlignment.MiddleLeft;
-            button_Log_Out.Location = new Point(0, 688);
-            button_Log_Out.Name = "button_Log_Out";
-            button_Log_Out.Size = new Size(207, 47);
-            button_Log_Out.TabIndex = 7;
-            button_Log_Out.Text = "Log Out";
-            button_Log_Out.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button_Log_Out.UseVisualStyleBackColor = true;
             // 
             // button_Data_Encrypt_Decrypt
             // 
@@ -220,7 +200,7 @@
             // 
             pictureBox2.Anchor = AnchorStyles.None;
             pictureBox2.Image = Properties.Resources.Home;
-            pictureBox2.Location = new Point(116, 47);
+            pictureBox2.Location = new Point(120, 84);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(287, 232);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -229,25 +209,14 @@
             // 
             // panel4
             // 
+            panel4.Controls.Add(frameUserProfile1);
             panel4.Controls.Add(frameEncryptAndDecrypt1);
             panel4.Controls.Add(panel_home);
-            panel4.Controls.Add(frameUserProfile1);
             panel4.Dock = DockStyle.Fill;
             panel4.Location = new Point(207, 50);
             panel4.Name = "panel4";
             panel4.Size = new Size(935, 685);
             panel4.TabIndex = 31;
-            // 
-            // frameUserProfile1
-            // 
-            frameUserProfile1.Dock = DockStyle.Fill;
-            frameUserProfile1.ForeColor = SystemColors.ControlText;
-            frameUserProfile1.Location = new Point(0, 0);
-            frameUserProfile1.Margin = new Padding(0, 0, 0, 0);
-            frameUserProfile1.Name = "frameUserProfile1";
-            frameUserProfile1.Size = new Size(935, 685);
-            frameUserProfile1.TabIndex = 31;
-            frameUserProfile1.Visible = false;
             // 
             // frameEncryptAndDecrypt1
             // 
@@ -268,6 +237,16 @@
             panel_home.Name = "panel_home";
             panel_home.Size = new Size(501, 407);
             panel_home.TabIndex = 36;
+            // 
+            // frameUserProfile1
+            // 
+            frameUserProfile1.BackColor = Color.FromArgb(40, 68, 69);
+            frameUserProfile1.Dock = DockStyle.Fill;
+            frameUserProfile1.Location = new Point(0, 0);
+            frameUserProfile1.Margin = new Padding(1);
+            frameUserProfile1.Name = "frameUserProfile1";
+            frameUserProfile1.Size = new Size(935, 685);
+            frameUserProfile1.TabIndex = 37;
             // 
             // frameAdministration
             // 
@@ -301,7 +280,6 @@
         private Panel panel2;
         private Button button_Data_Encrypt_Decrypt;
         private Button button_Profile;
-        private Button button_Log_Out;
         private Button button_About;
         private PictureBox pictureBox1;
         private Button button_Close_Window;

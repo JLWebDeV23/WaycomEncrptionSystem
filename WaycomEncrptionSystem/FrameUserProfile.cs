@@ -18,16 +18,6 @@ namespace WaycomEncrptionSystem
         public FrameUserProfile()
         {
             InitializeComponent();
-            textBox_Profile_Name.Text = currentUser.Name;
-            textBox_Profile_Organisation.Text = currentUser.Organisation;
-            textBox_Profile_Email.Text = currentUser.Email;
-            textBox_Profile_A1.Text = currentUser.Address1;
-            textBox_Profile_A2.Text = currentUser.Address2;
-            textBox_Profile_City.Text = currentUser.City;
-            textBox_Profile_State.Text = currentUser.State;
-            textBox_Profile_Postcode.Text = currentUser.PostalCode;
-            textBox_Profile_Country.Text = currentUser.Country;
-            pictureBox_Profile.Image = currentUser.ProfileImage;
         }
 
         internal static User CurrentUser
@@ -114,5 +104,33 @@ namespace WaycomEncrptionSystem
             currentUser.ProfileImage = currentUser.ImportImage();
             pictureBox_Profile.Image = currentUser.ProfileImage;
         }
+
+        private void FrameUserProfile_Load(object sender, EventArgs e)
+        {
+            textBox_Profile_Name.Text = currentUser.Name;
+            textBox_Profile_Organisation.Text = currentUser.Organisation;
+            textBox_Profile_Email.Text = currentUser.Email;
+            textBox_Profile_A1.Text = currentUser.Address1;
+            textBox_Profile_A2.Text = currentUser.Address2;
+            textBox_Profile_City.Text = currentUser.City;
+            textBox_Profile_State.Text = currentUser.State;
+            textBox_Profile_Postcode.Text = currentUser.PostalCode;
+            textBox_Profile_Country.Text = currentUser.Country;
+            pictureBox_Profile.Image = currentUser.ProfileImage;
+        }
+
+        /*private void FrameUserProfile_Load(object sender, EventArgs e)
+        {
+            textBox_Profile_Name.Text = currentUser.Name;
+            textBox_Profile_Organisation.Text = currentUser.Organisation;
+            textBox_Profile_Email.Text = currentUser.Email;
+            textBox_Profile_A1.Text = currentUser.Address1;
+            textBox_Profile_A2.Text = currentUser.Address2;
+            textBox_Profile_City.Text = currentUser.City;
+            textBox_Profile_State.Text = currentUser.State;
+            textBox_Profile_Postcode.Text = currentUser.PostalCode;
+            textBox_Profile_Country.Text = currentUser.Country;
+            pictureBox_Profile.Image = currentUser.ProfileImage;
+        }*/
     }
 }
