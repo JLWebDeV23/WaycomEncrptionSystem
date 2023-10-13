@@ -42,7 +42,6 @@ namespace WaycomEncrptionSystem.Encryption
                     }
                 }
             }
-
             return encrypted;
         }
 
@@ -77,7 +76,25 @@ namespace WaycomEncrptionSystem.Encryption
             }
             return plaintext;
         }
-    }
 
-    
+        public byte[] GenerateRandomKey()
+        {
+            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            {
+                byte[] key = new byte[16];
+                rng.GetBytes(key);
+                return key;
+            }
+        }
+
+        public byte[] GenerateRandomIV()
+        {
+            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            {
+                byte[] iv = new byte[16];
+                rng.GetBytes(iv);
+                return iv;
+            }            
+        }
+    }    
 }

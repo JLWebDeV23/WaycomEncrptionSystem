@@ -47,8 +47,6 @@ namespace WaycomEncrptionSystem.Encryption
             return key;
         }
 
-
-
         // Initialize the Blowfish cipher
         internal IBufferedCipher InitializeBlowfishCipher(byte[] key, bool forEncryption)
         {
