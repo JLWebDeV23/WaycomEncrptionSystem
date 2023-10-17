@@ -224,11 +224,11 @@ namespace WaycomEncrptionSystem
                 iv = AES.GenerateRandomIV();
                 encryptedData = AES.EcryptStringToByte(imageToString, key, iv);
             }
-            else if (method == "RSA")
+            /*else if (method == "RSA")
             {
                 keyRSA = myRSA.keyGenerator();
                 encryptedData = myRSA.Encrypt(imageToString, keyRSA);
-            }
+            }*/
             else if (method == "Blowfish")
             {
                 key = myBlowFish.GenerateBlowfishKey();

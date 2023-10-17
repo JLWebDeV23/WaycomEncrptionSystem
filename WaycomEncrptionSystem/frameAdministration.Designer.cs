@@ -40,9 +40,9 @@
             label_Client_Login = new Label();
             pictureBox2 = new PictureBox();
             panel4 = new Panel();
+            frameUserProfile1 = new FrameUserProfile();
             frameEncryptAndDecrypt1 = new frameEncryptAndDecrypt();
             panel_home = new Panel();
-            frameUserProfile1 = new FrameUserProfile();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -218,6 +218,17 @@
             panel4.Size = new Size(935, 685);
             panel4.TabIndex = 31;
             // 
+            // frameUserProfile1
+            // 
+            frameUserProfile1.BackColor = Color.FromArgb(40, 68, 69);
+            frameUserProfile1.Dock = DockStyle.Fill;
+            frameUserProfile1.Location = new Point(0, 0);
+            frameUserProfile1.Margin = new Padding(1);
+            frameUserProfile1.Name = "frameUserProfile1";
+            frameUserProfile1.Size = new Size(935, 685);
+            frameUserProfile1.TabIndex = 37;
+            frameUserProfile1.Visible = false;
+            // 
             // frameEncryptAndDecrypt1
             // 
             frameEncryptAndDecrypt1.BackColor = Color.SeaShell;
@@ -237,16 +248,6 @@
             panel_home.Name = "panel_home";
             panel_home.Size = new Size(501, 407);
             panel_home.TabIndex = 36;
-            // 
-            // frameUserProfile1
-            // 
-            frameUserProfile1.BackColor = Color.FromArgb(40, 68, 69);
-            frameUserProfile1.Dock = DockStyle.Fill;
-            frameUserProfile1.Location = new Point(0, 0);
-            frameUserProfile1.Margin = new Padding(1);
-            frameUserProfile1.Name = "frameUserProfile1";
-            frameUserProfile1.Size = new Size(935, 685);
-            frameUserProfile1.TabIndex = 37;
             // 
             // frameAdministration
             // 

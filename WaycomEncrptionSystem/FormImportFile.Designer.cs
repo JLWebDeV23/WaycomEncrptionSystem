@@ -236,7 +236,7 @@
             // 
             comboBox_encryptionMethods.ForeColor = Color.DimGray;
             comboBox_encryptionMethods.FormattingEnabled = true;
-            comboBox_encryptionMethods.Items.AddRange(new object[] { "AES", "RSA", "Blowfish", "Twofish", "Camellia", "Serpent", "TripleDES" });
+            comboBox_encryptionMethods.Items.AddRange(new object[] { "AES", "Blowfish", "Twofish", "Camellia", "Serpent", "TripleDES" });
             comboBox_encryptionMethods.Location = new Point(31, 365);
             comboBox_encryptionMethods.Name = "comboBox_encryptionMethods";
             comboBox_encryptionMethods.Size = new Size(175, 23);

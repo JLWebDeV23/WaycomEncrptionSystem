@@ -44,10 +44,10 @@ namespace WaycomEncrptionSystem
         private void button_Profile_Click(object sender, EventArgs e)
         {
             FrameUserProfile frame = new FrameUserProfile();
-            
+
             // Set the currentUser property of the FrameUserProfile
             this.Controls.Add(frame);
-            
+
 
             panel_home.Visible = false;
             frameEncryptAndDecrypt1.Visible = false;

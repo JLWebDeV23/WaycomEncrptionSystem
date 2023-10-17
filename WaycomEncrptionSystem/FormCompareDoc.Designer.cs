@@ -33,11 +33,13 @@
             panel2 = new Panel();
             button_Close_Window = new Button();
             groupBox_Decrypted = new GroupBox();
+            textBox_PDF2 = new TextBox();
             pictureBox_Decrypted = new PictureBox();
             richTextBox_Decrypted = new RichTextBox();
             groupBox_Original = new GroupBox();
             textBox_PDF1 = new TextBox();
-            textBox_PDF2 = new TextBox();
+            button_Export = new Button();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox_Original).BeginInit();
             panel2.SuspendLayout();
             groupBox_Decrypted.SuspendLayout();
@@ -69,7 +71,7 @@
             panel2.Dock = DockStyle.Top;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1092, 45);
+            panel2.Size = new Size(1094, 45);
             panel2.TabIndex = 79;
             // 
             // button_Close_Window
@@ -79,7 +81,7 @@
             button_Close_Window.FlatAppearance.MouseOverBackColor = Color.Red;
             button_Close_Window.FlatStyle = FlatStyle.Flat;
             button_Close_Window.Image = Properties.Resources.icons8_close_16;
-            button_Close_Window.Location = new Point(1034, 0);
+            button_Close_Window.Location = new Point(1036, 0);
             button_Close_Window.Name = "button_Close_Window";
             button_Close_Window.Size = new Size(58, 45);
             button_Close_Window.TabIndex = 11;
@@ -102,6 +104,19 @@
             groupBox_Decrypted.TabIndex = 81;
             groupBox_Decrypted.TabStop = false;
             groupBox_Decrypted.Text = "Decrypted File";
+            // 
+            // textBox_PDF2
+            // 
+            textBox_PDF2.BackColor = Color.FromArgb(32, 33, 36);
+            textBox_PDF2.BorderStyle = BorderStyle.None;
+            textBox_PDF2.Font = new Font("Segoe UI", 15.75F, FontStyle.Italic, GraphicsUnit.Point);
+            textBox_PDF2.ForeColor = SystemColors.ScrollBar;
+            textBox_PDF2.Location = new Point(202, 175);
+            textBox_PDF2.Name = "textBox_PDF2";
+            textBox_PDF2.Size = new Size(100, 28);
+            textBox_PDF2.TabIndex = 76;
+            textBox_PDF2.Text = "PDF FILE";
+            textBox_PDF2.Visible = false;
             // 
             // pictureBox_Decrypted
             // 
@@ -148,25 +163,42 @@
             textBox_PDF1.Text = "PDF FILE";
             textBox_PDF1.Visible = false;
             // 
-            // textBox_PDF2
+            // button_Export
             // 
-            textBox_PDF2.BackColor = Color.FromArgb(32, 33, 36);
-            textBox_PDF2.BorderStyle = BorderStyle.None;
-            textBox_PDF2.Font = new Font("Segoe UI", 15.75F, FontStyle.Italic, GraphicsUnit.Point);
-            textBox_PDF2.ForeColor = SystemColors.ScrollBar;
-            textBox_PDF2.Location = new Point(202, 175);
-            textBox_PDF2.Name = "textBox_PDF2";
-            textBox_PDF2.Size = new Size(100, 28);
-            textBox_PDF2.TabIndex = 76;
-            textBox_PDF2.Text = "PDF FILE";
-            textBox_PDF2.Visible = false;
+            button_Export.Anchor = AnchorStyles.None;
+            button_Export.FlatStyle = FlatStyle.Flat;
+            button_Export.Font = new Font("Cascadia Code", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            button_Export.ForeColor = Color.Snow;
+            button_Export.Location = new Point(972, 726);
+            button_Export.Name = "button_Export";
+            button_Export.Size = new Size(94, 37);
+            button_Export.TabIndex = 134;
+            button_Export.Text = "EXPORT";
+            button_Export.UseVisualStyleBackColor = true;
+            button_Export.Click += button_Export_Click;
+            // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.None;
+            button1.BackColor = Color.White;
+            button1.Enabled = false;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Microsoft New Tai Lue", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(979, 731);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 37);
+            button1.TabIndex = 135;
+            button1.UseVisualStyleBackColor = false;
             // 
             // FormCompareDoc
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(32, 33, 36);
-            ClientSize = new Size(1092, 735);
+            ClientSize = new Size(1094, 787);
+            Controls.Add(button_Export);
+            Controls.Add(button1);
             Controls.Add(panel2);
             Controls.Add(groupBox_Decrypted);
             Controls.Add(groupBox_Original);
@@ -197,5 +229,7 @@
         private GroupBox groupBox_Original;
         private TextBox textBox_PDF2;
         private TextBox textBox_PDF1;
+        private Button button_Export;
+        private Button button1;
     }
 }

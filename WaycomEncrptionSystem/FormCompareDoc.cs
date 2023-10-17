@@ -12,6 +12,8 @@ namespace WaycomEncrptionSystem
 {
     public partial class FormCompareDoc : Form
     {
+        DocFile doc = FormDecryptFiles.CurrentDoc;
+
         public FormCompareDoc()
         {
             InitializeComponent();
@@ -35,7 +37,6 @@ namespace WaycomEncrptionSystem
 
         private void LoadData()
         {
-            DocFile doc = FormDecryptFiles.CurrentDoc;
             if (doc.Type == ".pdf" || doc.Type == "pdf")
             {
                 textBox_PDF1.Visible = true;
@@ -55,6 +56,48 @@ namespace WaycomEncrptionSystem
         private void FormCompareDoc_Load(object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void button_Export_Click(object sender, EventArgs e)
+        {
+            string extension = doc.Type;
+            SaveFileDialog file = new SaveFileDialog();
+            file.FileName = doc.Name;
+
+            if (extension == "pdf" || extension == ".pdf")
+            {
+                file.Filter = "PDF(*PDF)|*.pdf";
+            }
+            else if (extension == "png" || extension == ".png")
+            {
+                file.Filter = "PNG(*PNG)|*.png";
+            }
+            else if (extension == "jpg" || extension == ".jpg")
+            {
+                file.Filter = "JPG(*JPG)|*.jpg";
+            }
+            else if (extension == "gif" || extension == ".gif")
+            {
+                file.Filter = "GIF(*GIF)|*.gif";
+            }
+            else if (extension == "bnp" || extension == ".bmp")
+            {
+                file.Filter = "BMP(*BMP)|*.bmp";
+            }
+
+            
+
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                if (extension == "pdf" || extension == ".pdf")
+                {
+                    File.WriteAllBytes(file.FileName, doc.DocDecyptedCipher);
+                }
+                else
+                {
+                    doc.DecryptedImage.Save(file.FileName);
+                }
+            }
         }
     }
 }
