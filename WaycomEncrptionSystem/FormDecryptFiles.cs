@@ -21,7 +21,7 @@ namespace WaycomEncrptionSystem
         SqlConnection conn = DatabaseConnection.db_Connect();
         private List<DocFile> docFiles = new List<DocFile>();
         private int page = 0;
-        private static DocFile currentDoc;
+        private static DocFile currentDoc = null!;
 
         internal static DocFile CurrentDoc
         {
@@ -50,9 +50,9 @@ namespace WaycomEncrptionSystem
                 {
                     DocFile file = new DocFile();
 
-                    file.Name = reader["doc_name"].ToString();
-                    file.Size = reader["doc_size"].ToString();
-                    file.Type = reader["doc_type"].ToString();
+                    file.Name = reader["doc_name"].ToString()!;
+                    file.Size = reader["doc_size"].ToString()!;
+                    file.Type = reader["doc_type"].ToString()!;
                     file.Key = (byte[])reader["encryption_key"];
                     if (reader["encryption_iv"] != DBNull.Value)
                     {
@@ -62,10 +62,10 @@ namespace WaycomEncrptionSystem
                     {
                         file.Iv = null;
                     }
-                    file.EncryptionType = reader["encryption_type"].ToString();
+                    file.EncryptionType = reader["encryption_type"].ToString()!;
                     file.DocOriginal = (byte[])reader["doc_original"];
                     file.DocCipher = (byte[])reader["doc_cipher"];
-                    file.userName = reader["user_code"].ToString();
+                    file.userName = reader["user_code"].ToString()!;
                     file.EncryptedImage = file.ByteArrayToImage(file.DocCipher);
                     file.OrignialImage = file.ByteArrayToImage(file.DocOriginal);
 
@@ -107,23 +107,33 @@ namespace WaycomEncrptionSystem
             DocFile doc = new DocFile();
             try
             {
-                textBox_fileName.Text = docFiles[index].Name;
-                textBox_fileSize.Text = docFiles[index].Size;
-                textBox_fileType.Text = docFiles[index].Type;
-                textBox_Encryption_Method.Text = docFiles[index].EncryptionType;
-                if (docFiles[index].EncryptedImage != null)
+                if (docFiles[index] != null)
                 {
-                    if (textBox_fileType.Text == ".pdf")
+                    textBox_fileName.Text = docFiles[index].Name;
+                    textBox_fileSize.Text = docFiles[index].Size;
+                    textBox_fileType.Text = docFiles[index].Type;
+                    textBox_Encryption_Method.Text = docFiles[index].EncryptionType;
+
+                    if (docFiles[index].EncryptedImage != null)
                     {
-                        pictureBox_Img.Image = null;
-                        textBox_PDF.Visible = true;
+                        if (textBox_fileType.Text == ".pdf")
+                        {
+                            pictureBox_Img.Image = null;
+                            textBox_PDF.Visible = true;
+                        }
+                        else
+                        {
+                            textBox_PDF.Visible = false;
+                            pictureBox_Img.Image = docFiles[index].EncryptedImage;
+                            richTextBox1.Text = doc.ByteToString(docFiles[index].DocCipher!);
+                        }
                     }
-                    else
-                    {
-                        textBox_PDF.Visible = false;
-                        pictureBox_Img.Image = docFiles[index].EncryptedImage;
-                        richTextBox1.Text = doc.ByteToString(docFiles[index].DocCipher);
-                    }                    
+                }
+                else
+                {
+                    // Handle the case when docFiles[index] is null
+                    // For example, you can display an error message or take appropriate action.
+                    MessageBox.Show("index is null");
                 }
             }
             catch (Exception ex)
@@ -177,50 +187,47 @@ namespace WaycomEncrptionSystem
             Camellia myCamellia = new Camellia();
             Serpent mySerpent = new Serpent();
             TripleDESAlgo myTripleDES = new TripleDESAlgo();
-            RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
-
-            // Key and Initialisation Vector
-            byte[] iv = null;
-            byte[] key = null;
-            AsymmetricCipherKeyPair keyRSA;
-
-            string imageToString;
 
             // Encryption Method
-            string method = doc.EncryptionType;
+            string method = doc.EncryptionType!;
 
-            byte[] cipher = doc.DocCipher;
-            string decryptedData = null;
+            byte[] cipher = doc.DocCipher!;
+            string decryptedData = null!;
+
+            // Key and Initialisation Vector
+            byte[] iv = null!;
+            byte[] key = null!;
+
             if (method == "AES")
             {
-                key = doc.Key;
-                iv = doc.Iv;
+                key = doc.Key!;
+                iv = doc.Iv!;
                 decryptedData = AES.DecryptStringFromByte(cipher, key, iv);
             }
             else if (method == "Blowfish")
             {
-                key = doc.Key;
+                key = doc.Key!;
                 decryptedData = myBlowFish.Decrypt(cipher, key);
             }
             else if (method == "Twofish")
             {
-                key = doc.Key;
+                key = doc.Key!;
                 decryptedData = myTwoFish.Decrypt(cipher, key);
             }
             else if (method == "Camellia")
             {
-                key = doc.Key;
-                iv = doc.Iv;
+                key = doc.Key!;
+                iv = doc.Iv!;
                 decryptedData = Convert.ToBase64String(myCamellia.Decrypt(cipher, key, iv));
             }
             else if (method == "Serpent")
             {
-                key = doc.Key;
+                key = doc.Key!;
                 decryptedData = Convert.ToBase64String(mySerpent.Decrypt(cipher, key));
             }
             else if (method == "TripleDES")
             {
-                key = doc.Key;
+                key = doc.Key!;
                 decryptedData = myTripleDES.Decrypt(cipher, key);
             }
             else

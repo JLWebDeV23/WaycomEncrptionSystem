@@ -13,20 +13,20 @@ namespace WaycomEncrptionSystem
 {
     public class User
     {
-        public string userName { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Organisation { get; set; }
-        public string Address1 { get; set; }
-        public string Address2 { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string PostalCode { get; set; }
-        public string Country { get; set; }
-        public Image ProfileImage { get; set; }
-        public byte[] ProfileImg { get; set; }
-        public string Extension { get; set; }
-        public bool IsActive { get; set; }
+        public string? userName { get; set; }
+        public string? Name { get; set; }
+        public string? Email { get; set; }
+        public string? Organisation { get; set; }
+        public string? Address1 { get; set; }
+        public string? Address2 { get; set; }
+        public string? City { get; set; }
+        public string? State { get; set; }
+        public string? PostalCode { get; set; }
+        public string? Country { get; set; }
+        public Image? ProfileImage { get; set; }
+        public byte[]? ProfileImg { get; set; }
+        public string? Extension { get; set; }
+        public bool? IsActive { get; set; }
         
         static SqlConnection conn = DatabaseConnection.db_Connect(); 
         
@@ -56,15 +56,15 @@ namespace WaycomEncrptionSystem
 
                 while (readerInfo.Read())
                 {
-                    Name = readerInfo["name_first"].ToString();
-                    Organisation = readerInfo["name_organisation"].ToString();
-                    Email = readerInfo["email_address"].ToString();
-                    Address1 = readerInfo["address_1"].ToString();
-                    Address2 = readerInfo["address_2"].ToString();
-                    City = readerInfo["city"].ToString();
-                    PostalCode = readerInfo["postcode"].ToString();
-                    State = readerInfo["state"].ToString();
-                    Country = readerInfo["country"].ToString();
+                    Name = readerInfo["name_first"].ToString()!;
+                    Organisation = readerInfo["name_organisation"].ToString()!;
+                    Email = readerInfo["email_address"].ToString()!;
+                    Address1 = readerInfo["address_1"].ToString()!;
+                    Address2 = readerInfo["address_2"].ToString()!;
+                    City = readerInfo["city"].ToString()!;
+                    PostalCode = readerInfo["postcode"].ToString()!;
+                    State = readerInfo["state"].ToString()!;
+                    Country = readerInfo["country"].ToString()!;
                     
                     if (readerInfo["profile_img"] != DBNull.Value)
                     {
@@ -73,12 +73,12 @@ namespace WaycomEncrptionSystem
                     }
                     else
                     {
-                        ProfileImg = null;
+                        ProfileImg = null!;
                     }
                 }                
                 readerInfo.Close();
                 conn.Close();
-                ProfileImage = ByteArrayToImage(ProfileImg);
+                ProfileImage = ByteArrayToImage(ProfileImg!);
             }
             catch (Exception ex)
             {
@@ -104,7 +104,7 @@ namespace WaycomEncrptionSystem
                 // Convert file content to byte array
                 ProfileImg = ConvertImageToByte(ProfileImage);
             }
-            return ProfileImage;
+            return ProfileImage!;
         }
 
         // Method to convert a byte array to an Image
@@ -119,7 +119,7 @@ namespace WaycomEncrptionSystem
         {
             byte[] imgByte;
             ImageConverter converter = new ImageConverter();
-            imgByte = (byte[])converter.ConvertTo(img, typeof(byte[]));
+            imgByte = (byte[])converter.ConvertTo(img, typeof(byte[]))!;
             return imgByte;
         }
 

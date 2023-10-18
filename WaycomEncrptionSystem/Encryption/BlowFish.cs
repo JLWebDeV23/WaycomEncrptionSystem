@@ -51,7 +51,7 @@ namespace WaycomEncrptionSystem.Encryption
         internal IBufferedCipher InitializeBlowfishCipher(byte[] key, bool forEncryption)
         {
             CipherKeyGenerator generator = GeneratorUtilities.GetKeyGenerator("Blowfish");
-            generator.Init(new KeyGenerationParameters(new SecureRandom(key), 128));
+            generator.Init(new KeyGenerationParameters(new SecureRandom(key)!, 128));
 
             IBufferedCipher cipher = CipherUtilities.GetCipher("Blowfish/ECB/PKCS7Padding"); // ECB mode with PKCS7Padding
             cipher.Init(forEncryption, new KeyParameter(key));

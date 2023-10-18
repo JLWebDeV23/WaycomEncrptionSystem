@@ -16,7 +16,7 @@ namespace WaycomEncrptionSystem
     {
         // Fields
         SqlConnection conn = DatabaseConnection.db_Connect();
-        public User currentUser;
+        public User currentUser = null!;
 
         public FormLogin()
         {
@@ -31,7 +31,7 @@ namespace WaycomEncrptionSystem
 
         private void button_Exit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void button_Login_Click(object sender, EventArgs e)

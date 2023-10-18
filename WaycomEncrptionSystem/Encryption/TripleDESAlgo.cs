@@ -7,7 +7,7 @@ namespace WaycomEncrptionSystem.Encryption
     {
         internal byte[] Encrypt(byte[] data, byte[] key)
         {
-            using (TripleDESCryptoServiceProvider tripleDesAlg = new TripleDESCryptoServiceProvider())
+            using (TripleDES tripleDesAlg = TripleDES.Create())
             {
                 tripleDesAlg.Key = key;
                 tripleDesAlg.Mode = CipherMode.ECB; // Electronic Codebook (ECB) mode
@@ -28,7 +28,7 @@ namespace WaycomEncrptionSystem.Encryption
 
         internal string Decrypt(byte[] encryptedData, byte[] key)
         {
-            using (TripleDESCryptoServiceProvider tripleDesAlg = new TripleDESCryptoServiceProvider())
+            using (TripleDES tripleDesAlg = TripleDES.Create())
             {
                 tripleDesAlg.Key = key;
                 tripleDesAlg.Mode = CipherMode.ECB;
@@ -50,7 +50,7 @@ namespace WaycomEncrptionSystem.Encryption
 
         internal byte[] GenerateValidTripleDESKey()
         {
-            using (TripleDESCryptoServiceProvider tripleDesAlg = new TripleDESCryptoServiceProvider())
+            using (TripleDES tripleDesAlg = TripleDES.Create())
             {
                 // Generate a valid 3DES key with a key size of 192 bits (24 bytes)
                 tripleDesAlg.GenerateKey();

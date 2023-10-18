@@ -31,8 +31,7 @@ namespace WaycomEncrptionSystem
 {
     public partial class FormImportFile : Form
     {
-        Bitmap image;
-        Image img;
+        Image img = null!;
         static SqlConnection conn = DatabaseConnection.db_Connect();
         private List<DocFile> docFiles = new List<DocFile>();
         private int page = 0;
@@ -40,7 +39,6 @@ namespace WaycomEncrptionSystem
         public FormImportFile()
         {
             InitializeComponent();
-            pictureBox_Img.AllowDrop = true;
         }
 
         private void ImportFile()
@@ -99,13 +97,13 @@ namespace WaycomEncrptionSystem
                 if (docFiles[index].EncryptedImage != null)
                 {
                     pictureBox_Img.Image = docFiles[index].EncryptedImage;
-                    richTextBox1.Text = ConvertByteToString(docFiles[index].DocCipher);
+                    richTextBox1.Text = ConvertByteToString(docFiles[index].DocCipher!);
 
                 }
                 else
                 {
                     pictureBox_Img.Image = docFiles[index].OrignialImage;
-                    richTextBox1.Text = ConvertByteToString(docFiles[index].DocOriginal);
+                    richTextBox1.Text = ConvertByteToString(docFiles[index].DocOriginal!);
                 }
             }
             catch (Exception ex)
@@ -158,7 +156,7 @@ namespace WaycomEncrptionSystem
                 SaveEncryptionType(comboBox_encryptionMethods.Text);
                 foreach (DocFile file in docFiles)
                 {
-                    if (file.EncryptionType.Length > 0)
+                    if (file.EncryptionType!.Length > 0)
                     {
                         active = true;
                     }
@@ -173,7 +171,7 @@ namespace WaycomEncrptionSystem
 
                     foreach (DocFile docFile in docFiles)
                     {
-                        encryptedData = DocEncryption(docFile.DocOriginal, docFile.EncryptionType, docFile);
+                        encryptedData = DocEncryption(docFile.DocOriginal!, docFile.EncryptionType!, docFile);
                         docFile.DocCipher = encryptedData;
                         img = docFile.ByteArrayToImage(encryptedData);
                         docFile.EncryptedImage = img;
@@ -210,12 +208,10 @@ namespace WaycomEncrptionSystem
             Serpent mySerpent = new Serpent();
             TripleDESAlgo myTripleDES = new TripleDESAlgo();
             RSACryptoServiceProvider RSA = new RSACryptoServiceProvider();
-            byte[] iv = null;
-            byte[] key = null;
-            AsymmetricCipherKeyPair keyRSA;
+            byte[] iv = null!;
+            byte[] key = null!;
             string imageToString;
-            byte[] encryptedData = null;
-
+            byte[] encryptedData = null!;
 
             imageToString = ConvertByteToString(originalText);
             if (method == "AES")
@@ -224,11 +220,6 @@ namespace WaycomEncrptionSystem
                 iv = AES.GenerateRandomIV();
                 encryptedData = AES.EcryptStringToByte(imageToString, key, iv);
             }
-            /*else if (method == "RSA")
-            {
-                keyRSA = myRSA.keyGenerator();
-                encryptedData = myRSA.Encrypt(imageToString, keyRSA);
-            }*/
             else if (method == "Blowfish")
             {
                 key = myBlowFish.GenerateBlowfishKey();
@@ -268,7 +259,7 @@ namespace WaycomEncrptionSystem
             }
             else
             {
-                docFile.Iv = null;
+                docFile.Iv = null!;
             }
 
             if (key != null)
@@ -277,11 +268,11 @@ namespace WaycomEncrptionSystem
             }
             else
             {
-                docFile.Key = null;
+                docFile.Key = null!;
             }
 
-            key = null;
-            iv = null;
+            key = null!;
+            iv = null!;
 
             return encryptedData;
         }
@@ -289,24 +280,7 @@ namespace WaycomEncrptionSystem
         private static string ConvertByteToString(byte[] byteArray)
         {
             return Convert.ToBase64String(byteArray);
-        }
-
-
-        private void pictureBox_Img_DragEnter(object sender, DragEventArgs e)
-        {
-            e.Effect = DragDropEffects.Copy;
-        }
-
-        private void pictureBox_Img_DragDrop(object sender, DragEventArgs e)
-        {
-            foreach (string pic in ((string[])e.Data.GetData(DataFormats.FileDrop)))
-            {
-                img = Image.FromFile(pic);
-                image = new Bitmap(img);
-                pictureBox_Img.Image = image;
-                // fix when import an image, the detail field is also updated 
-            }
-        }
+        }        
 
         private void button_Upload_Click(object sender, EventArgs e)
         {

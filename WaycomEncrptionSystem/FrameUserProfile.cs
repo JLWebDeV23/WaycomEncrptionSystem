@@ -14,7 +14,7 @@ namespace WaycomEncrptionSystem
     public partial class FrameUserProfile : UserControl
     {
         SqlConnection conn = DatabaseConnection.db_Connect();
-        private static User currentUser;
+        private static User currentUser = null!;
         public FrameUserProfile()
         {
             InitializeComponent();

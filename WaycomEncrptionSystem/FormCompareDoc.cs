@@ -44,12 +44,12 @@ namespace WaycomEncrptionSystem
             }
             else
             {
-                MemoryStream ms = new MemoryStream(doc.DocOriginal);
+                MemoryStream ms = new MemoryStream(doc.DocOriginal!);
                 pictureBox_Original.Image = Image.FromStream(ms);
                 pictureBox_Decrypted.Image = doc.DecryptedImage;
             }
-            richTextBox_Original.Text = doc.ByteToString(doc.DocOriginal);
-            richTextBox_Decrypted.Text = doc.ByteToString(doc.DocDecyptedCipher);
+            richTextBox_Original.Text = doc.ByteToString(doc.DocOriginal!);
+            richTextBox_Decrypted.Text = doc.ByteToString(doc.DocDecyptedCipher!);
 
         }
 
@@ -60,7 +60,7 @@ namespace WaycomEncrptionSystem
 
         private void button_Export_Click(object sender, EventArgs e)
         {
-            string extension = doc.Type;
+            string extension = doc.Type!;
             SaveFileDialog file = new SaveFileDialog();
             file.FileName = doc.Name;
 
@@ -91,11 +91,11 @@ namespace WaycomEncrptionSystem
             {
                 if (extension == "pdf" || extension == ".pdf")
                 {
-                    File.WriteAllBytes(file.FileName, doc.DocDecyptedCipher);
+                    File.WriteAllBytes(file.FileName!, doc.DocDecyptedCipher!);
                 }
                 else
                 {
-                    doc.DecryptedImage.Save(file.FileName);
+                    doc.DecryptedImage!.Save(file.FileName!);
                 }
             }
         }

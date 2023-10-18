@@ -54,7 +54,7 @@ namespace WaycomEncrptionSystem.Encryption
             if (iV == null || iV.Length <= 0)
                 throw new ArgumentNullException("IV");
 
-            string plaintext = null;
+            string plaintext;
 
             using (Aes aesObj = Aes.Create())
             {
@@ -79,22 +79,18 @@ namespace WaycomEncrptionSystem.Encryption
 
         public byte[] GenerateRandomKey()
         {
-            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
-            {
-                byte[] key = new byte[16];
-                rng.GetBytes(key);
-                return key;
-            }
+            RandomNumberGenerator rng = RandomNumberGenerator.Create();
+            byte[] key = new byte[16];
+            rng.GetBytes(key);
+            return key;            
         }
 
         public byte[] GenerateRandomIV()
         {
-            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
-            {
-                byte[] iv = new byte[16];
-                rng.GetBytes(iv);
-                return iv;
-            }            
+            RandomNumberGenerator rng = RandomNumberGenerator.Create();
+            byte[] iv = new byte[16];
+            rng.GetBytes(iv);
+            return iv;                       
         }
     }    
 }

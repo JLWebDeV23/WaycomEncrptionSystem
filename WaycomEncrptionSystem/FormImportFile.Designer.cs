@@ -105,8 +105,6 @@
             pictureBox_Img.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox_Img.TabIndex = 53;
             pictureBox_Img.TabStop = false;
-            pictureBox_Img.DragDrop += pictureBox_Img_DragDrop;
-            pictureBox_Img.DragEnter += pictureBox_Img_DragEnter;
             // 
             // textBox_fileType
             // 

@@ -34,7 +34,7 @@ namespace WaycomEncrptionSystem
             catch (Exception ex)
             {
                 MessageBox.Show($"Encryption error: {ex.Message}");
-                return null;
+                return null!;
             }
         }
 
@@ -63,7 +63,7 @@ namespace WaycomEncrptionSystem
             catch (Exception ex)
             {
                 Console.WriteLine($"Decryption error: {ex.Message}");
-                return null;
+                return null!;
             }
         }
         

@@ -14,19 +14,19 @@ namespace WaycomEncrptionSystem
 {
     internal class DocFile
     {
-        public string userName {  get; set; }
-        public byte[] Key { get; set; }
-        public byte[] Iv { get; set; }        
-        public string Name { get; set; }
-        public string Size { get; set; }
-        public string Type { get; set; }        
-        public string EncryptionType { get; set; }
-        public byte[] DocOriginal { get; set; }
-        public byte[] DocCipher { get; set; }
-        public byte[] DocDecyptedCipher { get; set; }
-        public Image OrignialImage { get; set; }
-        public Image EncryptedImage { get; set; }
-        public Image DecryptedImage { get; set; }
+        public string? userName {  get; set; }
+        public byte[]? Key { get; set; }
+        public byte[]? Iv { get; set; }        
+        public string? Name { get; set; }
+        public string? Size { get; set; }
+        public string? Type { get; set; }        
+        public string? EncryptionType { get; set; }
+        public byte[]? DocOriginal { get; set; }
+        public byte[]? DocCipher { get; set; }
+        public byte[]? DocDecyptedCipher { get; set; }
+        public Image? OrignialImage { get; set; }
+        public Image? EncryptedImage { get; set; }
+        public Image? DecryptedImage { get; set; }
 
         public DocFile()
         {
